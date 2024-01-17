@@ -21,6 +21,7 @@ Here is a sequence diagram that shows how to people would interact with the back
 - See the current story as it's written in real time
 - Ability for a user to save the story to read later
 - Stories are persistently stored
+- generative ai illustrates the last sentence of the story
 
 ### Technologies
 
