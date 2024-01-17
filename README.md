@@ -6,7 +6,7 @@ You know that game where you're making a story with your friends, but you only g
 
 ### Design TODO
 
-![Mock](rouoghDesign.jpg)
+![Mock](roughDesign.jpg)
 
 Here is a sequence diagram that shows how to people would interact with the backend to write a story.
 
