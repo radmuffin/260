@@ -1,4 +1,4 @@
-# [storyboard.ninja](http://storyboard.ninja/)
+# [storyboard.ninja](https://storyboard.ninja/)
 
 ### Elevator pitch
 
