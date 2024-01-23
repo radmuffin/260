@@ -3,7 +3,7 @@
 
 ## AWS EC2
 ##### 18.233.33.1 (use http not https for now)
-##### ssh -i 260startupKey.pem ubuntu@54.226.85.196
+##### ssh -i 260startupKey.pem ubuntu@18.233.33.1
 ##### interesting stufffs, certainly dope
 
 ## Route 53
