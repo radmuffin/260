@@ -7,6 +7,6 @@
 ##### interesting stufffs, certainly dope
 
 ## Route 53
-### (http://storyboard.ninja/)[http://storyboard.ninja/] 
+### http://storyboard.ninja/ 
 #### boom we did it, that was kinda rough with amazon putting a hold on me
 #### we got records to route the root domain and all subdomains to my public ip address
