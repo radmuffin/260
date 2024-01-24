@@ -1,19 +1,23 @@
 # [storyboard.ninja](https://storyboard.ninja/)
 
-### Elevator pitch
+## Contents
+- [Elevator Pitch](#elevator-pitch)
+- [Design](#design)
+- [Key Features](#key-features)
+- [Technologies](#technologies)
+- [Notes](https://github.com/radmuffin/startup/blob/main/notes.md)
 
+## Elevator Pitch
 You know that game where you're making a story with your friends, but you only get to add like three stories at a time? It never goes where you want, and something rediculous usually happens as far as the plot right? Well you're in luck because we have not fixed that problem! We're making it available to you and your friends all across the globe! Just hop on 3 Story Word, make an account, connect to your friends and with three words at a time spin fantastical stories together, alone! You're gonna love it :)) 
 
-### Design TODO
-
+## Design
 ![Mock](roughDesign.jpg)
 
 Here is a sequence diagram that shows how to people would interact with the backend to write a story.
 
 ![server interaction diagram](serverInteraction.jpg)
 
-### Key features
-
+## Key Features
 - Secure login over HTTPS
 - Connect with your friends
 - Each friend gets a turn to add to the story
@@ -23,8 +27,7 @@ Here is a sequence diagram that shows how to people would interact with the back
 - Stories are persistently stored
 - Generative ai illustrates the last sentence of the story
 
-### Technologies
-
+## Technologies
 I am going to use the required technologies in the following ways.
 
 - **HTML** - Uses correct HTML structure for application. Two HTML pages. One for login and one for voting. Hyperlinks to choice artifact.
@@ -39,5 +42,3 @@ I am going to use the required technologies in the following ways.
 - **DB/Login** - Store users, friends lists and stories in database. Register and login users. Credentials securely stored in database. Can't contribute unless authenticated and friends with the story creator
 - **WebSocket** - As each user contributes, the story is updated for everyone
 - **React** - Application ported to use the React web framework.
-
-#### [notes](https://github.com/radmuffin/startup/blob/main/notes.md)
