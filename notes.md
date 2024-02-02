@@ -2,12 +2,13 @@
 
 ## Contents
 - [10.1.24](#10124-more-git-stuff-new-most-of-it-markup-markdown-is-cool)
-- [AWS EC@](#aws-ec2)
+- [AWS EC2](#aws-ec2)
 - [Route 53](#route-53)
 - [HTTPS, TLS, web certificates...](#https-tls-and-web-certificates)
 - [HTML](#html)
 
-## 10.1.24. more git stuff, new most of it, markup (*markdown) is cool
+## 10.1.24. 
+#### more git stuff, new most of it, markup (*markdown) is cool
 
 ## AWS EC2
 ##### 18.233.33.1 (use http not https for now)
