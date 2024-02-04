@@ -25,3 +25,4 @@
 
 ## HTML
 ### I mean it's cool lol, don't think I'll really write that much about it
+#### kinda just google each thing I want to do with it high-key
