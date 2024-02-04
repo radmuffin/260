@@ -42,3 +42,13 @@ I am going to use the required technologies in the following ways.
 - **DB/Login** - Store users, friends lists and stories in database. Register and login users. Credentials securely stored in database. Can't contribute unless authenticated and friends with the story creator
 - **WebSocket** - As each user contributes, the story is updated for everyone
 - **React** - Application ported to use the React web framework.
+
+## HTML deliverable
+For this deliverable I built out the structure of my application using HTML.
+
+- **HTML pages** - Three HTML page that represent the ability to login, view created stories and write/contribute to a story.
+- **Links** - The login page and archive page both link to the write page.
+- **Text** - Each story contains the first line of it's contents in the archive, chicken big contains as much as was written in the write page.
+- **Images** - There is an illustration for each story. I would like to implement this with generative ai, but may have to settle for random cat picures as I don't want to pay for an openAI subscription.
+- **DB/Login** - Input box and submit button for login. The story choices represent data pulled from the database.
+- **WebSocket** - The contributions of other users is transmitted to all active users, and the active story is updated. (Multiple stories can be edited depending on which each user chooses)
