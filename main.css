@@ -1,29 +1,26 @@
 
-/* Reset default styles */
 body, h1, p {
-  margin: 0;
-  padding: 0;
+
+    margin: 0;
+    padding: 0;
 }
 
-/* Center content */
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
 }
 
-/* Style heading */
 h1 {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
 }
 
-/* Style paragraph */
 p {
-  font-size: 16px;
-  color: #666;
-  line-height: 1.5;
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
 }
