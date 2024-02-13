@@ -1,16 +1,24 @@
 body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     background-color: #f2f2f2;
+    min-width: 375px;
+}
+
+header {
+    flex: 0 80px;
+    justify-content: center;
+    background-color: #333;
+    color: #fff;
+}
+
+footer{
+    flex: 0 30px;
 }
 
 h1 {
     font-size: 24px;
     color: #333;
-    margin-bottom: 20px;
 }
 
 p {
