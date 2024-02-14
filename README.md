@@ -52,3 +52,13 @@ For this deliverable I built out the structure of my application using HTML.
 - **Images** - There is an illustration for each story. I would like to implement this with generative ai, but may have to settle for random cat picures as I don't want to pay for an openAI subscription.
 - **DB/Login** - Input box and submit button for login. The story choices represent data pulled from the database.
 - **WebSocket** - The contributions of other users is transmitted to all active users, and the active story is updated. (Multiple stories can be edited depending on which each user chooses)
+
+## CSS deliverable
+For this deliverable I properly styled the application into its final appearance.
+
+- **Header, footer, and main content body**
+- **Navigation elements** - I used bootstrap to make the header look much prettier.
+- **Responsive to window resizing** - My app looks great on all window sizes and devices
+- **Application elements** - Used good contrast and whitespace - mostly
+- **Application text content** - Consistent fonts
+- **Application images** - Fullscreen background images and images in tiles.
