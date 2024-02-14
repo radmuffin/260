@@ -6,6 +6,8 @@
 - [Key Features](#key-features)
 - [Technologies](#technologies)
 - [Notes](https://github.com/radmuffin/startup/blob/main/notes.md)
+- [HTML Deliverable](#html-deliverable)
+- [CSS Deliverable](#css-deliverable)
 
 ## Elevator Pitch
 You know that game where you're making a story with your friends, but you only get to add like three stories at a time? It never goes where you want, and something rediculous usually happens as far as the plot right? Well you're in luck because we have not fixed that problem! We're making it available to you and your friends all across the globe! Just hop on 3 Story Word, make an account, connect to your friends and with three words at a time spin fantastical stories together, alone! You're gonna love it :)) 
