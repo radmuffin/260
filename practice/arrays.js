@@ -9,7 +9,7 @@ function testAll(input, tester) {
     return result
   }
   
-  const strings = ['hello', 'world', 'this', 'is', 'a', 'test']
+  const strings = ['hello', 'world', 'this', 'i22s', 'a222', 'test']
   const result = testAll(strings, (str) => str.length > 3)
   
   console.log(result);
