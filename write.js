@@ -44,7 +44,7 @@ class Story {
             document.querySelector('#prompt').textContent = 'title your masterpiece!';
             document.querySelector('#submitBtn').textContent = 'enter';
         }
-        else {  // todo: change if went last
+        else {  // todo: change if went last to not display input?
             document.querySelector('#prompt').textContent = 'add to the story!';
             document.querySelector('#submitBtn').textContent = 'submit';
         }
@@ -94,7 +94,7 @@ class Story {
             this.blank = false;
         }
         else {
-
+                // todo: append text and change last writer
         }
         this.saveStory();
         this.setupStory();
