@@ -23,8 +23,11 @@ class Story {
             this.blank = true;
             this.author = getUsername();
             this.contributors = [this.author];
+            this.text = '';
+            this.title = 'enter the title first :)';
+            this.lastWriter = null;
         }        
-        this.image = 'chickens.jpg';
+        this.image = 'chickens.jpg';    // gonna be api later
         setupStory();        
     }
 
