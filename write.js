@@ -2,6 +2,7 @@ function getUsername() {
     return localStorage.getItem('username') ?? 'john doe';
 }
 
+// set username
 const usernameEl = document.querySelector('#currentUser');
 usernameEl.textContent = getUsername();
 
@@ -24,11 +25,11 @@ class Story {
             this.author = getUsername();
             this.contributors = [this.author];
             this.text = '';
-            this.title = 'enter the title first :)';
+            this.title = '...enter the title first :)';
             this.lastWriter = null;
         }        
         this.image = 'chickens.jpg';    // gonna be api later
-        setupStory();        
+        // setupStory();        
     }
 
     setupStory() {
@@ -37,7 +38,16 @@ class Story {
         const textEl = document.querySelector('#storyText');
         textEl.textContent = this.text;
         const imageEl = document.querySelector('#storyImage');
-        imageEl.src = this.image;
+        imageEl.style.backgroundImage = "url(" + this.image + ")";
+        // todo: add contributors and author
+        if (this.blank) {
+            document.querySelector('#prompt').textContent = 'title your masterpiece!';
+            document.querySelector('#submitBtn').textContent = 'enter';
+        }
+        else {  // todo: change if went last
+            document.querySelector('#prompt').textContent = 'add to the story!';
+            document.querySelector('#submitBtn').textContent = 'submit';
+        }
     }
 
     loadStory(storyJSON) {
@@ -74,5 +84,23 @@ class Story {
         return stories
 
     }
+
+    input() {
+        const inputEl = document.querySelector('#inputText')
+        let inputText = inputEl.value;
+        inputEl.value = '';
+        if (this.blank) {
+            this.title = inputText;
+            this.blank = false;
+        }
+        else {
+
+        }
+        this.saveStory();
+        this.setupStory();
+    }
 }
+
+const story = new Story();
+story.setupStory();
 
