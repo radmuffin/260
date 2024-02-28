@@ -10,6 +10,7 @@ class Story {
 
     constructor() {
         const storageStory = JSON.parse(localStorage.getItem('currentStory'));
+        // need to account for new story option
         this.title = storageStory.title;
         this.text = storageStory.text;
         this.image = 'chickens.jpg';
