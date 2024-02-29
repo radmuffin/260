@@ -19,11 +19,11 @@ class Story {
         const storageStory = localStorage.getItem('currentStory');
         if (storageStory) {
             this.loadStory(storageStory);
-            this.addContributor(getUsername());
+            // this.addContributor(getUsername());
         } else {
             this.blank = true;
             this.author = getUsername();
-            this.contributors = [this.author];
+            this.contributors = [];
             this.text = '';
             this.title = '...enter the title first :)';
             this.lastWriter = null;
@@ -39,7 +39,7 @@ class Story {
         textEl.textContent = this.text;
         const imageEl = document.querySelector('#storyImage');
         imageEl.style.backgroundImage = "url(" + this.image + ")";
-        // todo: add contributors and author
+        // todo: if no contributors, give alternative text
         const creditsEl = document.querySelector('#credits');
         creditsEl.textContent = 'created by: ' + this.author + '. contributions from: ' + this.contributors.join(', ') + '.';
         if (this.blank) {
@@ -110,7 +110,7 @@ class Story {
         else {
             this.text += ' ' + inputText;
             this.lastWriter = getUsername();
-                // todo: append text and change last writer
+            this.addContributor(getUsername());
         }
         this.saveStory();
         this.setupStory();
