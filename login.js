@@ -6,3 +6,10 @@ function login() {
     localStorage.setItem("password", passwordEl.value);
     window.location.href = "archive.html";
 }
+
+const passwordEl = document.querySelector("#password");
+passwordEl.addEventListener("keyup", function (event) {
+    if (event.key === "Enter") {
+        login();
+    }
+});

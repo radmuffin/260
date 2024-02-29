@@ -120,6 +120,16 @@ class Story {
 const story = new Story();
 story.setupStory();
 
+const inputField = document.querySelector('#inputText');
+inputField.addEventListener('keyup', function (event) {
+    if (event.code === 'Enter') {
+        story.input();
+    }
+});
+
+
+
+
 // simulate websocket notifications
 setInterval(() => {
     const id = Math.floor(Math.random() * 100);
