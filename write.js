@@ -40,13 +40,23 @@ class Story {
         const imageEl = document.querySelector('#storyImage');
         imageEl.style.backgroundImage = "url(" + this.image + ")";
         // todo: add contributors and author
+        const creditsEl = document.querySelector('#credits');
+        creditsEl.textContent = 'created by: ' + this.author + '. contributions from: ' + this.contributors.join(', ') + '.';
         if (this.blank) {
             document.querySelector('#prompt').textContent = 'title your masterpiece!';
             document.querySelector('#submitBtn').textContent = 'enter';
         }
-        else {  // todo: change if went last to not display input?
-            document.querySelector('#prompt').textContent = 'add to the story!';
-            document.querySelector('#submitBtn').textContent = 'submit';
+        else {  // todo: change if went last to not display input? (style.display = "none")
+            if (this.lastWriter === getUsername()) {
+                document.querySelector('#prompt').textContent = '...it should be someone else\'s turn';
+                document.querySelector('#submitBtn').textContent = 'but writer interaction ain\'t ready yet, so write on alone :(';
+
+            }
+            else {
+                document.querySelector('#prompt').textContent = 'add to the story!';
+                document.querySelector('#submitBtn').textContent = 'submit';
+            }
+            
         }
     }
 
@@ -55,6 +65,9 @@ class Story {
         this.title = parsedStory.title;
         this.text = parsedStory.text;
         this.lastWriter = parsedStory.lastWriter;
+        this.contributors = parsedStory.contributors;
+        this.author = parsedStory.author;
+        this.image = parsedStory.image;
         this.blank = false;
     }
 
@@ -71,7 +84,8 @@ class Story {
             stories = JSON.parse(storiesText);
         }
         stories = this.updateStories(this, stories);
-
+        localStorage.setItem('stories', JSON.stringify(stories));
+        localStorage.setItem('currentStory', JSON.stringify(this));
     }
 
     updateStories(story, stories) {
@@ -94,6 +108,8 @@ class Story {
             this.blank = false;
         }
         else {
+            this.text += ' ' + inputText;
+            this.lastWriter = getUsername();
                 // todo: append text and change last writer
         }
         this.saveStory();
@@ -103,4 +119,19 @@ class Story {
 
 const story = new Story();
 story.setupStory();
+
+// simulate websocket notifications
+setInterval(() => {
+    const id = Math.floor(Math.random() * 100);
+    const messegeEl = document.querySelector('#updateMess');
+    if (id % 3 === 0) {
+        messegeEl.textContent = 'author#' + id + ' added to the story!';
+    }
+    else if (id % 3 === 1) {
+        messegeEl.textContent = 'author#' + id + ' joined the story!';
+    }
+    else {
+        messegeEl.textContent = 'author#' + id + ' liked the story!';
+    }
+}, 4000);
 
