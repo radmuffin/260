@@ -29,7 +29,6 @@ class Story {
             this.lastWriter = null;
         }        
         this.image = 'chickens.jpg';    // gonna be api later
-        // setupStory();        
     }
 
     setupStory() {
@@ -77,7 +76,20 @@ class Story {
         }
     }
 
-    saveStory() {
+    async saveStory() {//TODO: combind with saveStoryLocal, save all stories not just current
+                        //also write the actual endpoint
+        try {
+            await fetch('/api/story', {
+                method: 'POST',
+                headers: {'content-type': 'application/json'},
+                body: JSON.stringify(this),
+            });
+        } catch {
+            // todo: show error message
+        }
+    }
+
+    saveStoryLocal() {
         let stories = [];
         const storiesText = localStorage.getItem('stories');
         if (storiesText) {
@@ -99,7 +111,7 @@ class Story {
 
     }
 
-    input() {
+    async input() {
         const inputEl = document.querySelector('#inputText')
         let inputText = inputEl.value;
         inputEl.value = '';
@@ -112,6 +124,7 @@ class Story {
             this.lastWriter = getUsername();
             this.addContributor(getUsername());
         }
+        this.saveStoryLocal();
         this.saveStory();
         this.setupStory();
     }
