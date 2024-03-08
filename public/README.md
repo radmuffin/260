@@ -9,6 +9,7 @@
 - [HTML Deliverable](#html-deliverable)
 - [CSS Deliverable](#css-deliverable)
 - [JavaScript Deliverable](#javascript-deliverable)
+- [Service Deliverable](#service-deliverable)
 
 ## Elevator Pitch
 You know that game where you're making a story with your friends, but you only get to add like three stories at a time? It never goes where you want, and something rediculous usually happens as far as the plot right? Well you're in luck because we have not fixed that problem! We're making it available to you and your friends all across the globe! Just hop on 3 Story Word, make an account, connect to your friends and with three words at a time spin fantastical stories together, alone! You're gonna love it :)) 
@@ -74,3 +75,13 @@ For this deliverable I implemented by JavaScript so that the application works f
 - **database** - Displayed all created stories, by the local user atleast. Currently this is stored and retrieved from local storage, but it will be replaced with the database data later.
 - **WebSocket** - I used the setInterval function to periodically change the notification from other writers. This will be replaced with WebSocket messages later, when others can actually edit the same stories.
 - **application logic** - Users can create as many new stories as they like, the javascript changes the input to first fill the title, then the content. Contributors and authors are recorded and displayed. Switching between stories without loss of data. Currently all stories have the same background image, but this will be changed when I add my api for random pictures.
+
+## Service deliverable
+
+For this deliverable I added backend endpoints that receives stories from write and returns all created stories for the archive.
+
+- **Node.js/Express HTTP service** - done!
+- **Static middleware for frontend** - done!
+- **Calls to third party endpoints** - Random image called after each story edit, url saved for other opens of the same story.
+- **Backend service endpoints** - Post endpoint for creating/updating stories. Get endpoint for retrieviing stories.
+- **Frontend calls service endpoints** - I did this using the fetch function.
