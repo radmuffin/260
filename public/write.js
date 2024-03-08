@@ -19,7 +19,6 @@ class Story {
         const storageStory = localStorage.getItem('currentStory');
         if (storageStory) {
             this.loadStory(storageStory);
-            // this.addContributor(getUsername());
         } else {
             this.blank = true;
             this.author = getUsername();
@@ -27,8 +26,8 @@ class Story {
             this.text = '';
             this.title = '...enter the title first :)';
             this.lastWriter = null;
+            this.image = 'chickens.jpg';
         }        
-        this.image = 'chickens.jpg';    // gonna be api later
     }
 
     setupStory() {
@@ -67,8 +66,23 @@ class Story {
         this.lastWriter = parsedStory.lastWriter;
         this.contributors = parsedStory.contributors;
         this.author = parsedStory.author;
-        this.image = parsedStory.image; //todo: change to api
+        this.image = parsedStory.image;
         this.blank = false;
+    }
+
+    getPic() {
+        const random = Math.floor(Math.random() * 1000);
+        fetch(`https://picsum.photos/v2/list?page=${random}&limit=1`)
+            .then((response) => response.json())
+            .then((data) => {
+            const backgroundImgEl = document.querySelector('#storyImage');
+
+            const width = backgroundImgEl.offsetWidth;
+            const height = backgroundImgEl.offsetHeight;
+
+            const imgUrl = `https://picsum.photos/id/${data[0].id}/${width}/${height}?blur=1`;
+            this.image = imgUrl;
+    });
     }
 
     addContributor(contributor) {
@@ -118,6 +132,7 @@ class Story {
         const inputEl = document.querySelector('#inputText')
         let inputText = inputEl.value;
         inputEl.value = '';
+        this.getPic();
         if (this.blank) {
             this.title = inputText;
             this.blank = false;
