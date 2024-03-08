@@ -45,10 +45,11 @@ class Story {
             document.querySelector('#prompt').textContent = 'title your masterpiece!';
             document.querySelector('#submitBtn').textContent = 'enter';
         }
-        else {  // todo: change if went last to not display input? (style.display = "none")
+        else {  
             if (this.lastWriter === getUsername()) {
-                document.querySelector('#prompt').textContent = '...it should be someone else\'s turn';
-                document.querySelector('#submitBtn').textContent = 'but writer interaction ain\'t ready yet, so write on alone :(';
+                document.querySelector('#prompt').textContent = 'let someone else write! :)';
+                document.querySelector('#submitBtn').textContent = 'maybe?';
+                // document.querySelector('#submitBtn').style.display = "none";
 
             }
             else {
@@ -66,7 +67,7 @@ class Story {
         this.lastWriter = parsedStory.lastWriter;
         this.contributors = parsedStory.contributors;
         this.author = parsedStory.author;
-        this.image = parsedStory.image;
+        this.image = parsedStory.image; //todo: change to api
         this.blank = false;
     }
 
