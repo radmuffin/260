@@ -78,6 +78,17 @@ class Story {
 
     async saveStory() {//TODO: combind with saveStoryLocal, save all stories not just current
                         //also write the actual endpoint
+        
+    }
+
+    async saveStoryLocal() {
+        let stories = [];
+        const storiesText = localStorage.getItem('stories');
+        if (storiesText) {
+            stories = JSON.parse(storiesText);
+        }
+        stories = this.updateThisToStories(this, stories);
+        localStorage.setItem('stories', JSON.stringify(stories));
         try {
             await fetch('/api/story', {
                 method: 'POST',
@@ -85,22 +96,13 @@ class Story {
                 body: JSON.stringify(this),
             });
         } catch {
-            // todo: show error message
+            const messegeEl = document.querySelector('#updateMess');
+            messegeEl.textContent = 'Failed to save story to server :(';
         }
-    }
-
-    saveStoryLocal() {
-        let stories = [];
-        const storiesText = localStorage.getItem('stories');
-        if (storiesText) {
-            stories = JSON.parse(storiesText);
-        }
-        stories = this.updateStories(this, stories);
-        localStorage.setItem('stories', JSON.stringify(stories));
         localStorage.setItem('currentStory', JSON.stringify(this));
     }
 
-    updateStories(story, stories) {
+    updateThisToStories(story, stories) {
         const index = stories.findIndex(s => s.title === story.title);
         if (index > -1) {
             stories[index] = story;
