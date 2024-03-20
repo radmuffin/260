@@ -91,12 +91,7 @@ class Story {
         }
     }
 
-    async saveStory() {//TODO: combind with saveStoryLocal, save all stories not just current
-                        //also write the actual endpoint
-        
-    }
-
-    async saveStoryLocal() {
+    async saveStory() {
         let stories = [];
         const storiesText = localStorage.getItem('stories');
         if (storiesText) {
@@ -142,7 +137,6 @@ class Story {
             this.lastWriter = getUsername();
             this.addContributor(getUsername());
         }
-        this.saveStoryLocal();
         this.saveStory();
         this.setupStory();
     }

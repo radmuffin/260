@@ -94,14 +94,14 @@ secureApiRouter.use(async (req, res, next) => {
 });
 
 // Save story/update to the server
-secureApiRouterpiRouter.post('/story', async (req, res) => {
+secureApiRouter.post('/story', async (req, res) => {
   const story = req.body;
   await DB.updateStory(story);
   res.status(200).send('Story saved successfully');
 });
 
 // Get all stories from the server 
-secureApiRouterpiRouter.get('/stories', async (_req, res) => {
+secureApiRouter.get('/stories', async (_req, res) => {
   const stories = DB.getStories();
   res.status(200).json(stories);
 });

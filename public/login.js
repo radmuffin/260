@@ -1,3 +1,16 @@
+(async () => {
+    const userName = localStorage.getItem('userName');
+    if (userName) {
+        const usernameEl = document.querySelector('#currentUser');
+        usernameEl.textContent = userName;
+        setDisplay('signedOut', 'none');
+        setDisplay('signedIn', 'block');
+    } else {
+        setDisplay('signedOut', 'block');
+        setDisplay('signedIn', 'none');
+    }
+  })();
+
 async function login() {
     await loginOrCreate("api/auth/login");
 }
@@ -20,7 +33,7 @@ async function loginOrCreate(endpoint) {
     const passwordEl = document.querySelector("#password");
 
     const response = await fetch(endpoint, {
-        mehod: 'post',
+        mehod: 'POST',
         headers: { 'content-type': 'application/json; charset=UTF-8' },
         body: JSON.stringify({
             username: usernameEl.value,
@@ -38,6 +51,13 @@ async function loginOrCreate(endpoint) {
     }
 
 }
+
+function setDisplay(controlId, display) {
+    const playControlEl = document.querySelector(`#${controlId}`);
+    if (playControlEl) {
+      playControlEl.style.display = display;
+    }
+  }
 
 const passwordEl = document.querySelector("#password");
 passwordEl.addEventListener("keyup", function (event) {
