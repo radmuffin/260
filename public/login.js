@@ -12,11 +12,11 @@
   })();
 
 async function login() {
-    await loginOrCreate("api/auth/login");
+    await loginOrCreate(`api/auth/login`);
 }
 
 async function create() {
-    await loginOrCreate("api/auth/create");
+    await loginOrCreate(`api/auth/create`);
 }
 
 function play() {
@@ -33,12 +33,12 @@ async function loginOrCreate(endpoint) {
     const passwordEl = document.querySelector("#password");
 
     const response = await fetch(endpoint, {
-        mehod: 'POST',
-        headers: { 'content-type': 'application/json; charset=UTF-8' },
+        method: 'POST',
         body: JSON.stringify({
             username: usernameEl.value,
             password: passwordEl.value
-        })
+        }),
+        headers: { 'content-type': 'application/json; charset=UTF-8' },
     })
 
     if (response.ok) {
@@ -47,7 +47,7 @@ async function loginOrCreate(endpoint) {
     } else {
         const body = await response.json();
         const messegeEl = document.querySelector("#headerText");
-        messegeEl.textContent = `⚠ Error: ${body.msg}`
+        messegeEl.textContent = `⚠ Error: ${body.msg}`;
     }
 
 }
@@ -57,7 +57,7 @@ function setDisplay(controlId, display) {
     if (playControlEl) {
       playControlEl.style.display = display;
     }
-  }
+}
 
 const passwordEl = document.querySelector("#password");
 passwordEl.addEventListener("keyup", function (event) {

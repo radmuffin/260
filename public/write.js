@@ -92,6 +92,7 @@ class Story {
     }
 
     async saveStory() {
+        // local first
         let stories = [];
         const storiesText = localStorage.getItem('stories');
         if (storiesText) {
@@ -99,6 +100,7 @@ class Story {
         }
         stories = this.updateThisToStories(this, stories);
         localStorage.setItem('stories', JSON.stringify(stories));
+        // then server
         try {
             await fetch('/api/story', {
                 method: 'POST',
