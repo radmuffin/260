@@ -26,7 +26,7 @@ const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 // Register a new user
-apiRouter.post('/register', async (req, res) => {
+apiRouter.post('/auth/create', async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 
@@ -38,7 +38,59 @@ apiRouter.post('/register', async (req, res) => {
 
   const newUser = await DB.createUser(username, password);
   setAuthCookie(res, newUser.token);
-  res.status(200).json(newUser);
+  res.status(200).json({ username : newUser.username});
+});
+
+// Get authToken for provided username and password
+apiRouter.post('/auth/login', async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  const user = await DB.getUser(username);
+  if (!user) {
+    res.status(401).send({ msg: 'Invalid username'});
+    return;
+  }
+
+  const passwordMatch = await bcrypt.compare(password, user.password);
+  if (!passwordMatch) {
+    res.status(401).send({ msg: 'Invalid username or password'});
+    return;
+  }
+
+  setAuthCookie(res, user.token);
+  res.status(200).json({ username: user.username });
+});
+
+// Logout the user by clearing the auth token
+apiRouter.post('/auth/logout', (_req, res) => {
+  res.clearCookie(authCookieName);
+  res.status(200).end();
+});
+
+// returns info about a user
+apiRouter.get('/user/:username', async (req, res) => {
+  const user = await DB.getUser(req.params.username);
+  if (!user) {
+    res.status(404).send({ msg: 'User not found'});
+    return;
+  }
+  const token = req?.cookies.token;
+  res.send({ username: user.username, authenticated: token === user.token });
+});
+
+// secureApiRouter verifies credentials for endpoints
+var secureApiRouter = express.Router();
+apiRouter.use(secureApiRouter);
+
+secureApiRouter.use(async (req, res, next) => {
+  authToken = req.cookies[authCookieName];
+  const user = await DB.getUserByToken(authToken);
+  if (user) {
+    next();
+  } else {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
 });
 
 // Save story/update to the server
@@ -47,7 +99,7 @@ apiRouter.post('/story', (req, res) => {
   res.status(200).send('Story saved successfully');
 });
 
-// Get all stories from the server
+// Get all stories from the server 
 apiRouter.get('/stories', (_req, res) => {
   res.status(200).json(stories);
 });
