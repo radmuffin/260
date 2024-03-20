@@ -84,18 +84,24 @@
         <div class="container d-flex align-items-center justify-content-center text-center h-100">
           <div class="text-white" data-mdb-theme="dark">
             <h1 class="mb-3">welcome to the dojo!</h1>
-            <h5 class="mb-5">login or register to begin</h5>
-            <div class="form-outline" data-mdb-input-init>
+            <h5 class="mb-5" id="headerText">let us begin</h5>
+            <div id="signedOut" style="display:  none">
+              <div class="form-outline" data-mdb-input-init>
                 <input type="text" id="username" class="form-control" />
                 <label class="form-label" >username:</label>
-            </div>
-            <div class="form-outline" data-mdb-input-init>
+              </div>
+              <div class="form-outline" data-mdb-input-init>
                 <input type="password" id="password" class="form-control" />
                 <label class="form-label" >password:</label>
+              </div>
+                <button type="submit" class="btn btn-primary btn-block mb-4" data-mdb-ripple-init onclick="login()">sign in</button>
+                <button type="submit" class="btn btn-primary btn-block mb-4" data-mdb-ripple-init onclick="create()">create user</button>
             </div>
-            <button type="submit" class="btn btn-primary btn-block mb-4" data-mdb-ripple-init onclick="login()">sign in</button>
-            <button type="submit" class="btn btn-primary btn-block mb-4" data-mdb-ripple-init onclick="create()">create user</button>
-          </div>          
+            <div id="signedIn" style="display:  none">
+              <button type="submit" class="btn btn-primary btn-block mb-4" data-mdb-ripple-init onclick="write()">write!</button>
+              <button type="submit" class="btn btn-primary btn-block mb-4" data-mdb-ripple-init onclick="logout()">logout :'/</button>
+            </div>   
+          </div>                 
         </div>
       </div>
     </div>

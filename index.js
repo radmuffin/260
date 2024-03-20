@@ -63,7 +63,7 @@ apiRouter.post('/auth/login', async (req, res) => {
 });
 
 // Logout the user by clearing the auth token
-apiRouter.post('/auth/logout', (_req, res) => {
+apiRouter.delete('/auth/logout', (_req, res) => {
   res.clearCookie(authCookieName);
   res.status(200).end();
 });
