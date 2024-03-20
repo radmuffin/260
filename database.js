@@ -39,3 +39,19 @@ function getUser(username) {
   
     return user;
   }
+
+  function getStories() {
+    return scoreCollection.find().toArray();
+  }
+
+  function updateStory(story) {
+    return scoreCollection.updateOne({ title: story.title }, { $set: story }, { upsert: true });
+  }
+
+  module.exports = {
+    getUser,
+    getUserByToken,
+    createUser,
+    getStories,
+    updateStory,
+  };
