@@ -94,13 +94,15 @@ secureApiRouter.use(async (req, res, next) => {
 });
 
 // Save story/update to the server
-apiRouter.post('/story', (req, res) => {
-  updateStories(req.body);
+secureApiRouterpiRouter.post('/story', async (req, res) => {
+  const story = req.body;
+  await DB.updateStory(story);
   res.status(200).send('Story saved successfully');
 });
 
 // Get all stories from the server 
 apiRouter.get('/stories', (_req, res) => {
+  const stories = DB.getStories();
   res.status(200).json(stories);
 });
 
@@ -127,13 +129,13 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-let stories = [];
-function updateStories(story) { 
-  for (let i = 0; i < stories.length; i++) {
-    if (stories[i].title === story.title) {
-      stories[i] = story;
-      return;
-    }
-  }
-  stories.push(story);
-}
+// let stories = [];
+// function updateStories(story) { 
+//   for (let i = 0; i < stories.length; i++) {
+//     if (stories[i].title === story.title) {
+//       stories[i] = story;
+//       return;
+//     }
+//   }
+//   stories.push(story);
+// }
