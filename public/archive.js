@@ -1,5 +1,5 @@
 function getUsername() {
-    return localStorage.getItem('username') ?? 'john doe';
+    return localStorage.getItem('username') ?? 'login to access the archive!';
 }
 
 // set username
@@ -22,7 +22,9 @@ async function loadStories() {
     try {
         const response = await fetch('/api/stories');
         stories = await response.json();
-        localStorage.setItem('stories', JSON.stringify(stories));
+        if (response.ok) {
+            localStorage.setItem('stories', JSON.stringify(stories));
+        }
     } catch {
         const storiesText = localStorage.getItem('stories');
         if (storiesText) {

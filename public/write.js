@@ -1,5 +1,5 @@
 function getUsername() {
-    return localStorage.getItem('username') ?? 'john doe';
+    return localStorage.getItem('username') ?? 'login to save your work!';
 }
 
 // set username
@@ -86,7 +86,7 @@ class Story {
     }
 
     addContributor(contributor) {
-        if (!this.contributors.includes(contributor)) {
+        if (!this.contributors.includes(contributor) && contributor !== 'login to save your work!') {
             this.contributors.push(contributor);
         }
     }
@@ -99,20 +99,31 @@ class Story {
         }
         stories = this.updateThisToStories(this, stories);
         localStorage.setItem('stories', JSON.stringify(stories));
+        let response;
         try {
-            await fetch('/api/story', {
+            response = await fetch('/api/story', {
                 method: 'POST',
                 headers: {'content-type': 'application/json'},
                 body: JSON.stringify(this),
             });
         } catch {
-            const messegeEl = document.querySelector('#updateMess');
-            messegeEl.textContent = 'Failed to save story to server :(';
+            const errMessegeEl = document.querySelector('#updateMess');
+            errMessegeEl.textContent = 'Failed to save story to server :(';
         }
-        localStorage.setItem('currentStory', JSON.stringify(this));
+        if (response.ok) {
+            localStorage.setItem('currentStory', JSON.stringify(this));
+        } else {            
+            const body = await response.json();
+            const messegeEl = document.querySelector('#updateMess');
+            messegeEl.textContent = `⚠ Error: ${body.msg}`;
+        }
     }
 
     updateThisToStories(story, stories) {
+        if (stories.length === 0) {
+            stories.push(story);
+            return stories;
+        }
         const index = stories.findIndex(s => s.title === story.title);
         if (index > -1) {
             stories[index] = story;
