@@ -1,5 +1,5 @@
 (async () => {
-    const userName = localStorage.getItem('userName');
+    const userName = localStorage.getItem('username');
     if (userName) {
         const usernameEl = document.querySelector('#currentUser');
         usernameEl.textContent = userName;
@@ -19,7 +19,7 @@ async function create() {
     await loginOrCreate(`api/auth/create`);
 }
 
-function play() {
+function toTheArchive() {
     window.location.href = "archive.html";
 }
 
