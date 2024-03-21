@@ -101,8 +101,8 @@ secureApiRouter.post('/story', async (req, res) => {
 });
 
 // Get all stories from the server 
-secureApiRouter.get('/stories', async (_req, res) => {
-  const stories = DB.getStories();
+secureApiRouter.get('/stories', async (req, res) => {
+  const stories = await DB.getStories();
   res.status(200).json(stories);
 });
 

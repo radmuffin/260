@@ -93,13 +93,13 @@ class Story {
 
     async saveStory() {
         // local first
-        let stories = [];
-        const storiesText = localStorage.getItem('stories');
-        if (storiesText) {
-            stories = JSON.parse(storiesText);
-        }
-        stories = this.updateThisToStories(this, stories);
-        localStorage.setItem('stories', JSON.stringify(stories));
+        // let stories = [];
+        // const storiesText = localStorage.getItem('stories');
+        // if (storiesText) {
+        //     stories = JSON.parse(storiesText);
+        // }
+        // stories = this.updateThisToStories(this, stories);
+        // localStorage.setItem('stories', JSON.stringify(stories));
         // then server
         try {
             await fetch('/api/story', {
