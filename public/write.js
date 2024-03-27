@@ -20,19 +20,16 @@ class Story {
         const storageStory = localStorage.getItem('currentStory');
         if (storageStory) {
             this.loadStory(storageStory);
-            this.configureWebSocket();
         } else {
             this.blank = true;
             this.author = getUsername();
             this.contributors = [];
             this.text = '';
-            //temp for ws join message
-            this.title = 'a new story'
-            this.configureWebSocket();
             this.title = '...enter the title first :)';
             this.lastWriter = null;
             this.image = 'chickens.jpg';
-        }        
+        }    
+        this.configureWebSocket();    
     }
 
     setupStory() {
@@ -193,16 +190,18 @@ class Story {
         this.text += ' ' + text;
         this.lastWriter = author;
         this.addContributor(author);
-        this.image = image;
+        // timing of getPic() combined with this leaves the image as the last one set by the user :'/
+        // this.image = image;
         this.setupStory();
     }
 
     broadcastJoin() {
         const newGuy = getUsername();
+        const title = this.blank ? 'a new story' : this.title;
         const stuff = {
-            title: this.title,
+            title: title,
             message: newGuy + ' opened the story!',
-            altMsg: newGuy + ' opened ' + this.title + '!',
+            altMsg: newGuy + ' opened ' + title + '!',
         };
         this.socket.send(JSON.stringify(stuff));
     }
