@@ -20,11 +20,15 @@ class Story {
         const storageStory = localStorage.getItem('currentStory');
         if (storageStory) {
             this.loadStory(storageStory);
+            this.configureWebSocket();
         } else {
             this.blank = true;
             this.author = getUsername();
             this.contributors = [];
             this.text = '';
+            //temp for ws join message
+            this.title = 'a new story'
+            this.configureWebSocket();
             this.title = '...enter the title first :)';
             this.lastWriter = null;
             this.image = 'chickens.jpg';
@@ -158,6 +162,24 @@ class Story {
     configureWebSocket() {
         const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
         this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+        this.socket.onopen = () => {
+            this.broadcastJoin();
+            this.displayMessage('connected XD');
+        };
+        this.socket.onclose = (event) => {
+            this.displayMessage('disconnected :(');
+        }
+        this.socket.onmessage = async (event) => {
+            const data = JSON.parse(await event.data.text());
+            if (data.title === this.title) {
+                if (data.text) {
+                    this.webSocketEdit(data.text, data.author, data.image);
+                }
+                this.displayMessage(data.message);
+            } else {
+                this.displayMessage(data.altMsg);
+            }            
+        };
     }
 
     displayMessage(message) {
@@ -165,12 +187,35 @@ class Story {
         messegeEl.textContent = message;
     }
 
-    webSocketEdit(edit) {
-        this.text += ' ' + edit.text;
-        this.lastWriter = edit.author;
-        this.addContributor(edit.author);
-        this.image = edit.image;
+    webSocketEdit(text, author, image) {
+        this.text += ' ' + text;
+        this.lastWriter = author;
+        this.addContributor(author);
+        this.image = image;
         this.setupStory();
+    }
+
+    broadcastJoin() {
+        const newGuy = getUsername();
+        const stuff = {
+            title: this.title,
+            message: newGuy + ' opened the story!',
+            altMsg: newGuy + ' opened ' + this.title + '!',
+        };
+        this.socket.send(JSON.stringify(stuff));
+    }
+
+    broadcastEdit(text) {
+        const editor = getUsername();
+        const stuff = {
+            text: text,
+            title: this.title,
+            image: this.image,
+            author: editor,
+            message: editor + ' added to the story!',
+            altMsg: editor + ' edited ' + this.title + '!',
+        };
+        this.socket.send(JSON.stringify(stuff));
     }
 
 }
@@ -189,17 +234,17 @@ inputField.addEventListener('keyup', function (event) {
 
 
 // simulate websocket notifications
-setInterval(() => {
-    const id = Math.floor(Math.random() * 100);
-    const messegeEl = document.querySelector('#updateMess');
-    if (id % 3 === 0) {
-        messegeEl.textContent = 'author#' + id + ' added to the story!';
-    }
-    else if (id % 3 === 1) {
-        messegeEl.textContent = 'author#' + id + ' joined the story!';
-    }
-    else {
-        messegeEl.textContent = 'author#' + id + ' liked the story!';
-    }
-}, 4000);
+// setInterval(() => {
+//     const id = Math.floor(Math.random() * 100);
+//     const messegeEl = document.querySelector('#updateMess');
+//     if (id % 3 === 0) {
+//         messegeEl.textContent = 'author#' + id + ' added to the story!';
+//     }
+//     else if (id % 3 === 1) {
+//         messegeEl.textContent = 'author#' + id + ' joined the story!';
+//     }
+//     else {
+//         messegeEl.textContent = 'author#' + id + ' liked the story!';
+//     }
+// }, 4000);
 
