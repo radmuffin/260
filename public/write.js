@@ -152,6 +152,8 @@ class Story {
             this.text += ' ' + inputText;
             this.lastWriter = getUsername();
             this.addContributor(getUsername());
+            // send through websocket
+            this.broadcastEdit(inputText);
         }
         this.saveStory();
         this.setupStory();
