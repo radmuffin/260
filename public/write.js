@@ -48,8 +48,8 @@ class Story {
         }
         else {  
             if (this.lastWriter === getUsername()) {
-                document.querySelector('#prompt').textContent = 'let someone else write! :)';
-                document.querySelector('#submitBtn').textContent = 'maybe?';
+                document.querySelector('#prompt').textContent = 'hey you just wrote!';
+                document.querySelector('#submitBtn').textContent = 'let someone else write, maybe?';
                 // document.querySelector('#submitBtn').style.display = "none";
 
             }
