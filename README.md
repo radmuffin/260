@@ -11,6 +11,7 @@
 - [JavaScript Deliverable](#javascript-deliverable)
 - [Service Deliverable](#service-deliverable)
 - [DB/Login Deliverable](#dblogin-deliverable)
+- [Websocket Deliverable](#websocket-deliverable)
 
 ## Elevator Pitch
 You know that game where you're making a story with your friends, but you only get to add like three stories at a time? It never goes where you want, and something rediculous usually happens as far as the plot right? Well you're in luck because we have not fixed that problem! We're making it available to you and your friends all across the globe! Just hop on 3 Story Word, make an account, connect to your friends and with three words at a time spin fantastical stories together, alone! You're gonna love it :)) 
@@ -97,3 +98,12 @@ For this deliverable I implement user authentication, and database use for stora
 - **existing user** - Able to sign in to preexisting users, uses bcrypt for password hashing and comparison
 - **Use MongoDB to store credentials** - Stores both users and stories.
 - **Restricts functionality** - You cannot view or write stories until you have logged in
+
+## WebSocket deliverable
+
+For this deliverable I used webSocket to update the stories on the frontend in realtime.
+
+- **Backend listens for WebSocket connection** - done!
+- **Frontend makes WebSocket connection** - done!
+- **Data sent over WebSocket connection** - done!
+- **WebSocket data displayed** - All user input display in realtime. If other stories are edited/joined, an alternate message is displayed. I'm really proud that this is working lol. Way cool!
