@@ -14,6 +14,7 @@ class Story {
     contributors;
     author;
     lastWriter;
+    socket;
 
     constructor() {
         const storageStory = localStorage.getItem('currentStory');
@@ -151,6 +152,27 @@ class Story {
         this.saveStory();
         this.setupStory();
     }
+
+    // websocket stuffs
+
+    configureWebSocket() {
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    }
+
+    displayMessage(message) {
+        const messegeEl = document.querySelector('#updateMess');
+        messegeEl.textContent = message;
+    }
+
+    webSocketEdit(edit) {
+        this.text += ' ' + edit.text;
+        this.lastWriter = edit.author;
+        this.addContributor(edit.author);
+        this.image = edit.image;
+        this.setupStory();
+    }
+
 }
 
 const story = new Story();
