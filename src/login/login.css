@@ -1,0 +1,16 @@
+#intro {
+    background-image: url("dojo.jpg");
+    height: 100vh;
+}
+
+  /* Height for devices larger than 576px */
+  @media (min-width: 100px) {
+    #intro {
+      display: block !important;
+      margin-top: -58.59px;
+    }
+  }
+
+  .mask{
+    background-color: rgba(102, 97, 97, 0.303);
+  }

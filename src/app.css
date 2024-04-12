@@ -1,20 +1,7 @@
-#intro {
-    background-image: url("dojo.jpg");
-    height: 100vh;
-  }
-
 #headerPic {
     background-image: url("dojo.jpg");
     height: 60px;
     z-index: 2000;
-  }
-
-  /* Height for devices larger than 576px */
-@media (min-width: 100px) {
-    #intro {
-      display: block !important;
-      margin-top: -58.59px;
-    }
   }      
 
 .navbar .nav-link {

@@ -7,6 +7,10 @@ import './app.css';
 import './mdb.min.css';
 
 export default function App() {
+    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+    const loggedInNow = userName !== '';
+    const [loggedIn, setLoggedIn] = React.useState(loggedInNow);
+
     return (
         <BrowserRouter>
             <div>
@@ -25,17 +29,19 @@ export default function App() {
                                     <li className="nav-item active">
                                         <NavLink className="nav-link" aria-current="page" to="">home</NavLink>
                                     </li>
+                                    {loggedIn === true && (
                                     <li className="nav-item">
                                         <NavLink className="nav-link" to="write">create!</NavLink>
-                                    </li>
+                                    </li>)}
+                                    {loggedIn === true && (
                                     <li className="nav-item">
                                         <NavLink className="nav-link" to="archive">archive</NavLink>
-                                    </li>
+                                    </li>)}
                                 </ul>
 
                                 <ul className="navbar-nav d-flex flex-row">
                                     <li className="nav-item">
-                                        <a id="currentUser" className="nav-link"></a>
+                                        <a id="currentUser" className="nav-link">{userName}</a>
                                     </li>
                                     <li className="nav-item me-3 me-lg-0">
                                         <a className="nav-link" href="https://github.com/radmuffin/startup">
@@ -49,7 +55,13 @@ export default function App() {
                 </header>
 
                 <Routes>
-                    <Route path="/" element={<Login />} exact />
+                    <Route path="/" element={<Login
+                        loggedIn={loggedIn}
+                        onAuthChange={(userName, loggedIn) => {
+                            setUserName(userName);
+                            setLoggedIn(loggedIn);
+                        }} 
+                     />} exact />
                     <Route path="write" element={<Write />} />
                     <Route path="archive" element={<Archive />} />
                     <Route path="*" element={<NotFound />}/>
@@ -68,6 +80,6 @@ export default function App() {
 }
 
 function NotFound() {
-    return <main>404: Return to sender. Address unknown.</main>;
+    return <main style={{height: "90vh"}}>404: Return to sender. Address unknown.</main>;
   }
 
