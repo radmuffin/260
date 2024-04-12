@@ -1,0 +1,13 @@
+#storyImage {
+    background-image: url("chickens.jpg");
+    height: calc(100vh);
+}
+
+main {
+    margin-top: 0px !important; 
+    margin-bottom: 0px;
+}
+
+.mask {
+    background-color: rgba(102, 97, 97, 0.688);
+}

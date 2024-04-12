@@ -7,7 +7,7 @@ import './app.css';
 import './mdb.min.css';
 
 export default function App() {
-    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+    const [userName, setUserName] = React.useState(localStorage.getItem('username') || '');
     const loggedInNow = userName !== '';
     const [loggedIn, setLoggedIn] = React.useState(loggedInNow);
 
@@ -62,7 +62,7 @@ export default function App() {
                             setLoggedIn(loggedIn);
                         }} 
                      />} exact />
-                    <Route path="write" element={<Write />} />
+                    <Route path="write" element={<Write username={userName} />} />
                     <Route path="archive" element={<Archive />} />
                     <Route path="*" element={<NotFound />}/>
                 </Routes>
