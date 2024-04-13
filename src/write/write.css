@@ -11,3 +11,7 @@ main {
 .mask {
     background-color: rgba(102, 97, 97, 0.688);
 }
+
+#inputText {
+    background-color: rgba(102, 97, 97, 0.688);
+}

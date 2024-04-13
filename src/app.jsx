@@ -80,6 +80,6 @@ export default function App() {
 }
 
 function NotFound() {
-    return <main style={{height: "90vh"}}>404: Return to sender. Address unknown.</main>;
+    return <main className='text-center' style={{height: "90vh"}}>404: Return to sender. Address unknown.</main>;
   }
 

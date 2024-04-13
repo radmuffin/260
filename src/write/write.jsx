@@ -192,7 +192,7 @@ export function Write( { username } ) {
 
                         <div className="form-outline" data-mdb-input-init>                                        
                           <input type="text" id="inputText" className="form-control" />
-                          <label id="prompt" className="form-label" htmlFor="inputText">     ...write here...   </label>
+                          <label id="prompt" className="form-label" htmlFor="inputText">write here...   </label>
                           <button type="submit" id="submitBtn" className="btn btn-primary btn-block mb-4" onClick={() => input()} data-mdb-ripple-init>{prompt}</button>
 
                         </div>
