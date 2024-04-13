@@ -1,5 +1,5 @@
 #headerPic {
-    background-image: url("dojo.jpg");
+    background-image: url("/dojo.jpg");
     height: 60px;
     z-index: 2000;
   }      

@@ -1,5 +1,5 @@
 #storyImage {
-    background-image: url("chickens.jpg");
+    background-image: url("/chickens.jpg");
     height: calc(100vh);
 }
 
