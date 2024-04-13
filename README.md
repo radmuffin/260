@@ -12,6 +12,7 @@
 - [Service Deliverable](#service-deliverable)
 - [DB/Login Deliverable](#dblogin-deliverable)
 - [Websocket Deliverable](#websocket-deliverable)
+- [React Deliverable](#react-deliverable)
 
 ## Elevator Pitch
 You know that game where you're making a story with your friends, but you only get to add like three stories at a time? It never goes where you want, and something rediculous usually happens as far as the plot right? Well you're in luck because we have not fixed that problem! We're making it available to you and your friends all across the globe! Just hop on 3 Story Word, make an account, connect to your friends and with three words at a time spin fantastical stories together, alone! You're gonna love it :)) 
@@ -107,3 +108,12 @@ For this deliverable I used webSocket to update the stories on the frontend in r
 - **Frontend makes WebSocket connection** - done!
 - **Data sent over WebSocket connection** - done!
 - **WebSocket data displayed** - All user input display in realtime. If other stories are edited/joined, an alternate message is displayed. I'm really proud that this is working lol. Way cool!
+
+## React deliverable
+
+For this deliverable I converted the application over to use react.
+
+- **Bundled and transpiled** - done!
+-  **Components** - Login, write page, archive, and story cards are all components
+-  **Router** - Routing between login and writing and archive components.
+-  **Hooks** - `UseState` and `UseEffect` to facilitate changing states, and loading fetch requests.
